@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Book Management System</string>
+    <string name="title_activity_main">Book Management System</string>
+    <string name="package_name">com.bms.application</string>
+    <string name="custom_url_scheme">com.bms.application</string>
+</resources>
