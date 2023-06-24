@@ -4,7 +4,6 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"android:dev": "npx cap sync android && npx cap copy && npx cap run android",
 		"build": "vite build",
 		"android:build": "vite build && npx cap sync android && npx cap copy",
 		"preview": "vite preview",
