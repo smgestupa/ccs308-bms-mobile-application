@@ -35,7 +35,7 @@
 		"@capacitor/android": "^4.8.0",
 		"@capacitor/cli": "^4.8.0",
 		"@capacitor/core": "^4.8.0",
-		"@capacitor/geolocation": "^4.1.0",
+		"@capacitor/preferences": "^4.0.2",
 		"svelte-french-toast": "^1.1.0"
 	}
 }
