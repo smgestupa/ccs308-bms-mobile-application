@@ -1,10 +1,10 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { Camera, CameraResultType } from "@capacitor/camera";
-    import { decode } from "base64-arraybuffer";
     import toast from "svelte-french-toast";
     import { currentTitle } from "$lib/stores/currentPage";
     import { jwtToken, userID } from "$lib/stores/jwt";
+    import { profilePhoto } from "$lib/stores/profile";
     import edit from "$lib/icons/edit.svg?raw";
     $currentTitle = "Profile";
     let photo: string = "",
@@ -67,6 +67,7 @@
 
         if (req.status === 200) {
             toast.success(res["message"], { position: "bottom-center" });
+            $profilePhoto = photo;
             goto("/profile", { replaceState: true });
         }
     }

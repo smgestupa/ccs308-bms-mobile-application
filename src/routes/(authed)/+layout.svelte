@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { currentTitle } from "$lib/stores/currentPage";
   import { page } from "$app/stores";
+  import { currentTitle } from "$lib/stores/currentPage";
+  import { profilePhoto } from "$lib/stores/profile";
   import magnifying_glass from "$lib/icons/magnifying_glass.svg?raw";
   import logout from "$lib/icons/logout.svg?raw";
   import house from "$lib/icons/house.svg?raw";
@@ -22,8 +23,8 @@
     <div class="dropdown dropdown-end">
       <label tabindex="0" class="m-1">
         <div class="avatar">
-          <figure class="w-10 h-10 bg-black rounded-full">
-            <img src="/favicon.png" alt="Profile">
+          <figure class="w-10 h-10 bg-black rounded-full overflow-hidden">
+            <img src="{$profilePhoto !== "" ? `data:image/png;base64, ${$profilePhoto}` : "/favicon.png"}" alt="Profile">
           </figure>
         </div>
       </label>

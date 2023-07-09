@@ -14,8 +14,6 @@
         });
         const res = await req.json();
 
-        console.log(res.data);
-
         return res.data;
     }
 </script>
