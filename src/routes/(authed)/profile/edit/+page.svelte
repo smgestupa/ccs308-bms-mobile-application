@@ -1,14 +1,27 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import { Camera, CameraResultType } from "@capacitor/camera";
+    import { decode } from "base64-arraybuffer";
     import toast from "svelte-french-toast";
     import { currentTitle } from "$lib/stores/currentPage";
     import { jwtToken, userID } from "$lib/stores/jwt";
     import edit from "$lib/icons/edit.svg?raw";
     $currentTitle = "Profile";
-    let photo: string | undefined = "",
+    let photo: string = "",
         firstName: string = "",
         lastName: string = "",
         bio: string = "";
+
+    const uploadPhoto = async () => {
+        const image = await Camera.getPhoto( { 
+            quality: 100,
+            allowEditing: true,
+            resultType: CameraResultType.Base64
+        } );
+        
+        if (image.base64String)
+            photo = image.base64String;
+    }
 
     const getUserProfile = async () => {
         const req = await fetch("http://localhost:8080/api/v1/users/profile/get", {
@@ -19,18 +32,22 @@
             }
         });
         const res = await req.json();
+        const data = res.data;
 
-        photo = res["photo"];
-        firstName = res["firstName"];
-        lastName = res["lastName"];
-        bio = res["bio"];
+        if (data["photo"])
+            photo = data["photo"];
 
-        return res.data;
+        firstName = data["firstName"];
+        lastName = data["lastName"];
+        bio = data["bio"];
+
+        return data;
     }
 
     const editUserProfile = async () => {
         const user = {
             userID: $userID,
+            photo,
             firstName,
             lastName,
             bio
@@ -58,13 +75,9 @@
 <div class="flex-grow py-20">
     {#await getUserProfile() then data}
     <section class="relative bg-secondary h-36">
-        <button class="avatar absolute bottom-0 translate-y-14 px-4">
-            <figure class="w-28 h-28 bg-black rounded-full">
-                {#if data["photo"]}
-                <img src="data:image/png;base64, {data["cover"]}" alt="Profile">
-                {:else}
-                <img src="/favicon.png" alt="Profile">
-                {/if}
+        <button class="avatar absolute bottom-0 translate-y-14 px-4" on:click={uploadPhoto}>
+            <figure class="w-28 h-28 bg-black rounded-full overflow-hidden">
+                <img src="{photo !== "" ? `data:image/png;base64, ${photo}` : "/favicon.png"}" alt="Profile">
             </figure>
         </button>
     </section>
