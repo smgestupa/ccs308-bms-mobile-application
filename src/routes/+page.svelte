@@ -11,7 +11,7 @@
 
             if (preferencesJwtToken.value && preferencesUserID.value) {
                 $jwtToken = preferencesJwtToken.value;
-                $userID = Number(preferencesUserID.value);
+                $userID = preferencesUserID.value;
                 goto("/home", { replaceState: true });
             } 
             else 
