@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
+    import toast from "svelte-french-toast";
     import arrow_left_circle from "$lib/icons/arrow_left_circle.svg?raw";
     let step: number = 0,
         firstName: string = "",
@@ -22,25 +24,47 @@
         step -= 1;
     };
 
-    const register = () => {
-        if (!fantasy || !horror || !adventure || !romance || !mystery)
-            return;
+    const registerUser = async () => {
+        let genres: Array<string> = [];
+        
+        if (fantasy) genres.push("fantasy");
+        if (horror) genres.push("horror");
+        if (adventure) genres.push("adventure");
+        if (romance) genres.push("romance");
+        if (mystery) genres.push("mystery");
 
-        const user = {
+        if (genres.length !== 3) {
+            toast.error("You must choose three genres before proceeding", { position: "bottom-center" });
+            return;
+        }
+
+        const user: any = {
+            username,
+            password,
+            roles: ["user"],
             firstName,
             lastName,
             bio,
-            username,
-            password
+            genres
         };
 
-        const genres = {
-            fantasy,
-            horror,
-            adventure,
-            romance,
-            mystery
-        };
+        const req = await fetch("http://localhost:8080/api/v1/users/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(user)
+        });
+        const res = await req.json();
+
+        if (req.status !== 200) {
+            toast.error(res["message"], { position: "bottom-center" });
+            return;
+        }
+
+        toast.success(res["message"], { position: "bottom-center" });
+        goto("/login", { replaceState: true });
     };
 </script>
 
@@ -157,7 +181,7 @@
         </button>
     </div>
     <button class="btn w-full btn-secondary mt-8"
-    on:click={register}>
+    on:click={registerUser}>
         <span class="font-bold text-base-100 normal-case">Complete Register</span>
     </button>
     {/if}
