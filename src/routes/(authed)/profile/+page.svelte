@@ -1,15 +1,33 @@
 <script lang="ts">
     import { currentTitle } from "$lib/stores/currentPage";
+    import { jwtToken, userID } from "$lib/stores/jwt";
     import edit from "$lib/icons/edit.svg?raw";
-    import logout from "$lib/icons/logout.svg?raw";
     $currentTitle = "Profile";
+
+    const getUserProfile = async () => {
+        const req = await fetch("http://localhost:8080/api/v1/users/profile/get", {
+            headers: {
+                "Accept": "application/json",
+                "Authorization": $jwtToken,
+                "userID": $userID
+            }
+        });
+        const res = await req.json();
+
+        return res.data;
+    }
 </script>
 
 <div class="flex-grow py-20">
+    {#await getUserProfile() then data}
     <section class="relative bg-secondary h-36">
         <button class="avatar absolute bottom-0 translate-y-14 px-4">
             <figure class="w-28 h-28 bg-black rounded-full">
-              <img src="/favicon.png" alt="Profile">
+                {#if data["photo"]}
+                <img src="data:image/png;base64, {data["cover"]}" alt="Profile">
+                {:else}
+                <img src="/favicon.png" alt="Profile">
+                {/if}
             </figure>
         </button>
     </section>
@@ -23,26 +41,27 @@
     </section>
     
     <section class="mt-8 px-4">
-        <p class="font-bold text-3xl break-words">Shawn Michael Gestupa</p>
+        <p class="font-bold text-3xl break-words">{data["firstName"] + " " + data["lastName"]}</p>
         <div class="flex gap-x-2 justify-between w-full max-w-full mt-4">
             <div class="form-control w-1/2">
                 <label class="label">
                   <span class="label-text font-bold uppercase text-gray-400">First Name</span>
                 </label>
-                <p class="w-full max-w-xs break-words text-xl">Shawn Michael</p>
+                <p class="w-full max-w-xs break-words text-xl">{data["firstName"]}</p>
             </div>
             <div class="form-control w-1/2">
                 <label class="label">
                   <span class="label-text font-bold uppercase text-gray-400">Last Name</span>
                 </label>
-                <p class="w-full max-w-xs break-words text-xl">Gestupa</p>
+                <p class="w-full max-w-xs break-words text-xl">{data["lastName"]}</p>
             </div>
         </div>
         <div class="form-control mt-8">
             <label class="label">
               <span class="label-text font-bold uppercase text-gray-400">Bio</span>
             </label>
-            <textarea class="textarea textarea-bordered h-full min-h-[8rem] resize-none" placeholder="This user does not have a default bio" disabled></textarea>
+            <textarea class="textarea textarea-bordered h-full min-h-[8rem] resize-none" placeholder="This user does not have a default bio" disabled>{data["bio"]}</textarea>
         </div>
     </section>
+    {/await}
 </div>
