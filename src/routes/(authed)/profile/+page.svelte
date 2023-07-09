@@ -14,6 +14,8 @@
         });
         const res = await req.json();
 
+        console.log(res.data);
+
         return res.data;
     }
 </script>
@@ -22,12 +24,8 @@
     {#await getUserProfile() then data}
     <section class="relative bg-secondary h-36">
         <button class="avatar absolute bottom-0 translate-y-14 px-4">
-            <figure class="w-28 h-28 bg-black rounded-full">
-                {#if data["photo"]}
-                <img src="data:image/png;base64, {data["cover"]}" alt="Profile">
-                {:else}
-                <img src="/favicon.png" alt="Profile">
-                {/if}
+            <figure class="w-28 h-28 bg-black rounded-full overflow-hidden">
+                <img src="{data["photo"] ? `data:image/png;base64, ${data["photo"]}` : "/favicon.png"}" alt="Profile">
             </figure>
         </button>
     </section>
