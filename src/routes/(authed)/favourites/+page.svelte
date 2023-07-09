@@ -32,7 +32,7 @@
             <div class="w-5 h-5">{@html maginifying_glass}</div>
         </button>
     </div>
-    <ul class="grid grid-cols-[repeat(auto-fill,_minmax(132px,_1fr))] gap-4 mt-2 h-20">
+    <ul class="grid grid-cols-[repeat(auto-fill,_minmax(132px,_1fr))] gap-4 mt-2">
     {#each books as book, index}
         <li class="mx-auto">
             <BookDisplay 
