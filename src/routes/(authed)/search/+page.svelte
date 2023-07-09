@@ -1,11 +1,12 @@
 <script lang="ts">
+    import { page } from "$app/stores";
     import { currentTitle } from "$lib/stores/currentPage";
     import { jwtToken, userID } from "$lib/stores/jwt";
     import maginifying_glass from "$lib/icons/magnifying_glass.svg?raw";
 	import BookDisplay from "$lib/components/BookDisplay.svelte";
 	import { onMount } from "svelte";
     $currentTitle = "Search";
-    let query: string = "",
+    let query: string = $page.url.searchParams.get("query") ?? "",
         books: any = [];
 
     const getBooks = async () => {
