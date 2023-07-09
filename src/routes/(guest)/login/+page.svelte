@@ -3,7 +3,7 @@
     import { Preferences } from "@capacitor/preferences";
     import toast from "svelte-french-toast";
 
-    const submitLoginForm = async (event: Event) => {
+    const loginUser = async (event: Event) => {
         const formData: FormData = new FormData(event.target as HTMLFormElement);
         const formEntries: any = Object.fromEntries(formData);
 
@@ -36,7 +36,7 @@
     }
 </script>
 
-<form class="bg-base-100 mt-40 px-4" on:submit={submitLoginForm}>
+<form class="bg-base-100 mt-40 px-4" on:submit={loginUser}>
     <div class="form-control w-full">
         <label class="label" for="username">
             <span class="label-text font-bold uppercase text-gray-400">Username <span class="text-red-500">*</span></span>
