@@ -13,7 +13,6 @@
 
         const req = await fetch(`http://localhost:8080/api/v1/books/get/${bookID}`, {
             headers: {
-                "Content-Type": "application/json",
                 "Accept": "application/json",
                 "Authorization": $jwtToken,
                 "userID": $userID
