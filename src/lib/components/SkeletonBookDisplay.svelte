@@ -1,8 +1,12 @@
-<div class="card card-compact w-fit h-fit p-1 rounded-none opacity-10">
-    <figure>
-        <div class="w-[132px] h-[211px] bg-white rounded-md bg-center bg-no-repeat bg-contain mx-auto bg-[url(/favicon.png)]"/>
-    </figure>
-    <p class="card-title inline-block mt-2 text-ellipsis overflow-hidden w-[132px] text-sm whitespace-nowrap">
-        <span class="block loading loading-spinner mx-auto"></span>
-    </p>
+<div class="card card-compact h-fit w-fit rounded-none p-1 opacity-10">
+	<figure>
+		<div
+			class="mx-auto h-[211px] w-[132px] rounded-md bg-white bg-[url(/favicon.png)] bg-contain bg-center bg-no-repeat"
+		/>
+	</figure>
+	<p
+		class="card-title mt-2 inline-block w-[132px] overflow-hidden text-ellipsis whitespace-nowrap text-sm"
+	>
+		<span class="loading loading-spinner mx-auto block" />
+	</p>
 </div>

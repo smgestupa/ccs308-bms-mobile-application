@@ -1,8 +1,6 @@
-import { writable } from "svelte/store";
-import type { Writable } from "svelte/store";
+import { writable } from 'svelte/store';
+import type { Writable } from 'svelte/store';
 
-const currentTitle: Writable<string> = writable("Home");
+const currentTitle: Writable<string> = writable('Home');
 
-export {
-    currentTitle
-}
+export { currentTitle };
