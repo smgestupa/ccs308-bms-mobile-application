@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { currentTitle } from "$lib/stores/currentPage";
+  import { jwtToken, userID } from "$lib/stores/jwt";
   import { profilePhoto } from "$lib/stores/profile";
   import magnifying_glass from "$lib/icons/magnifying_glass.svg?raw";
   import logout from "$lib/icons/logout.svg?raw";
@@ -8,6 +9,19 @@
   import star from "$lib/icons/star.svg?raw";
   import camera from "$lib/icons/camera.svg?raw";
   import person from "$lib/icons/person.svg?raw";
+
+  const getUserProfile = async () => {
+    const req = await fetch("http://localhost:8080/api/v1/users/profile/get", {
+        headers: {
+            "Accept": "application/json",
+            "Authorization": $jwtToken,
+            "userID": $userID
+        }
+    });
+    const res = await req.json();
+        
+    $profilePhoto = res["data"]["photo"];
+  }
 
   $: ({ route } = $page);
 </script>
@@ -24,7 +38,9 @@
       <label tabindex="0" class="m-1">
         <div class="avatar">
           <figure class="w-10 h-10 bg-black rounded-full overflow-hidden">
+            {#await getUserProfile() then _}
             <img src="{$profilePhoto !== "" ? `data:image/png;base64, ${$profilePhoto}` : "/favicon.png"}" alt="Profile">
+            {/await}
           </figure>
         </div>
       </label>
