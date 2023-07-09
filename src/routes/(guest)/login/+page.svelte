@@ -1,6 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { Preferences } from "@capacitor/preferences";
+    import { jwtToken, userID } from "$lib/stores/jwt";
     import toast from "svelte-french-toast";
 
     const loginUser = async (event: Event) => {
@@ -29,6 +30,9 @@
         await Preferences.set(
             { key: "userID", value: res["userID"] },
         );
+
+        $jwtToken = res["type"] + res["token"];
+        $userID = res["userID"];
 
         toast.success("Successfully logged in", { position: "bottom-center" });
 
