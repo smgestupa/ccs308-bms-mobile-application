@@ -75,8 +75,12 @@
 		<li class="step" class:step-primary={step >= 2}>Genre</li>
 	</ul>
 	{#if step === 0}
+		<a class="w-fit btn-ghost btn flex items-center gap-x-2 px-0 text-lg" href="/login">
+			<div class="h-5 w-5">{@html arrow_left_circle}</div>
+			Go Back
+		</a>
 		<form on:submit={increaseStep}>
-			<div class="form-control w-full">
+			<div class="form-control mt-4 w-full">
 				<label class="label" for="firstName">
 					<span class="label-text font-bold uppercase text-gray-400"
 						>First Name <span class="text-red-500">*</span></span
