@@ -31,7 +31,7 @@
 		await Preferences.set({ key: "jwtToken", value: "" });
 		await Preferences.set({ key: "userID", value: "" });
 		goto("/login", { replaceState: true });
-		toast.success("Successfully logged out");
+		toast.success("Successfully logged out", { position: "bottom-center" });
 	}
 
 	$: ({ route } = $page);
