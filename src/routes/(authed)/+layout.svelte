@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { Preferences } from '@capacitor/preferences';
+	import toast from 'svelte-french-toast';
 	import { currentTitle } from '$lib/stores/currentPage';
 	import { jwtToken, userID } from '$lib/stores/jwt';
 	import { profilePhoto } from '$lib/stores/profile';
@@ -22,6 +25,13 @@
 
 		$profilePhoto = res['data']['photo'];
 	};
+
+	const logoutUser = async () => {
+		await Preferences.set({ key: "jwtToken", value: "" });
+		await Preferences.set({ key: "userID", value: "" });
+		goto("/login", { replaceState: true });
+		toast.success("Successfully logged out");
+	}
 
 	$: ({ route } = $page);
 </script>
@@ -55,7 +65,8 @@
 				<li><a class="text-lg" href="/profile">Profile</a></li>
 				<li><div class="divider my-0" /></li>
 				<li>
-					<button class="text-lg font-bold text-error">
+					<button class="text-lg font-bold text-error"
+					on:click={logoutUser}>
 						<div class="h-5 w-5">{@html logout}</div>
 						Logout
 					</button>
