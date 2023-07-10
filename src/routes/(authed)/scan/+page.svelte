@@ -37,21 +37,26 @@
 
 		buttonDisabled = true;
 
-		const req = await fetch('http://localhost:8080/api/v1/books/extract', {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				Authorization: $jwtToken
-			},
-			body: formData
-		});
-		const res = await req.json();
+		try {
+			const req = await fetch('http://localhost:8080/api/v1/books/extract', {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					Authorization: $jwtToken
+				},
+				body: formData
+			});
+			const res = await req.json();
 
-		if (req.status === 200) {
-			toast.success('ISBN code successfully extracted', { position: 'bottom-center' });
-			goto(`/search?query=${res['data']}`);
-		} else {
-			toast.error(res['message'], { position: 'bottom-center' });
+			if (req.status === 200) {
+				toast.success('ISBN code successfully extracted', { position: 'bottom-center' });
+				goto(`/search?query=${res['data']}`);
+			} else {
+				toast.error(res['message'], { position: 'bottom-center' });
+			}
+		} catch (err) {
+			toast.error('Something went wrong during scanning, try again later', { position: 'bottom-center' });
+			currImage = '';
 		}
 
 		buttonDisabled = false;

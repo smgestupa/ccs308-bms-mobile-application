@@ -8,31 +8,35 @@
 		const formData: FormData = new FormData(event.target as HTMLFormElement);
 		const formEntries: any = Object.fromEntries(formData);
 
-		const req = await fetch('http://localhost:8080/api/v1/users/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json'
-			},
-			body: JSON.stringify(formEntries)
-		});
-		const res = await req.json();
+		try {
+			const req = await fetch('http://localhost:8080/api/v1/users/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json'
+				},
+				body: JSON.stringify(formEntries)
+			});
+			const res = await req.json();
 
-		if (req.status !== 200) {
-			toast.error(res['message'] ?? "Username or password is invalid", { position: 'bottom-center' });
-			return;
+			if (req.status !== 200) {
+				toast.error(res['message'] ?? "Username or password is invalid", { position: 'bottom-center' });
+				return;
+			}
+
+			await Preferences.set({ key: 'jwtToken', value: res['type'] + res['token'] });
+
+			await Preferences.set({ key: 'userID', value: res['userID'] });
+
+			$jwtToken = res['type'] + res['token'];
+			$userID = res['userID'];
+
+			toast.success('Successfully logged in', { position: 'bottom-center' });
+
+			goto('/home', { replaceState: true });
+		} catch (err) {
+			toast.error('Something went wrong during login, try again later', { position: 'bottom-center' });
 		}
-
-		await Preferences.set({ key: 'jwtToken', value: res['type'] + res['token'] });
-
-		await Preferences.set({ key: 'userID', value: res['userID'] });
-
-		$jwtToken = res['type'] + res['token'];
-		$userID = res['userID'];
-
-		toast.success('Successfully logged in', { position: 'bottom-center' });
-
-		goto('/home', { replaceState: true });
 	};
 </script>
 

@@ -52,22 +52,26 @@
 			bio
 		};
 
-		const req = await fetch('http://localhost:8080/api/v1/users/profile/edit', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: $jwtToken,
-				userID: $userID
-			},
-			body: JSON.stringify(user)
-		});
-		const res = await req.json();
+		try {
+			const req = await fetch('http://localhost:8080/api/v1/users/profile/edit', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json',
+					Authorization: $jwtToken,
+					userID: $userID
+				},
+				body: JSON.stringify(user)
+			});
+			const res = await req.json();
 
-		if (req.status === 200) {
-			toast.success(res['message'], { position: 'bottom-center' });
-			$profilePhoto = photo;
-			goto('/profile', { replaceState: true });
+			if (req.status === 200) {
+				toast.success(res['message'], { position: 'bottom-center' });
+				$profilePhoto = photo;
+				goto('/profile', { replaceState: true });
+			}
+		} catch (err) {
+			toast.error('Something went wrong during editing, try again later', { position: 'bottom-center' });
 		}
 	};
 </script>

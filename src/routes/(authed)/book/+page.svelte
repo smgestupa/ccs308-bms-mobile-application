@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+	export const prerender: boolean = false;
+</script>
+
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -13,37 +17,42 @@
 
 		const bookID: string | null = $page.url.searchParams.get('id');
 
-		const req = await fetch(`http://localhost:8080/api/v1/books/get/${bookID}`, {
-			headers: {
-				Accept: 'application/json',
-				Authorization: $jwtToken,
-				userID: $userID
-			}
-		});
+		try {
+			const req = await fetch(`http://localhost:8080/api/v1/books/get/${bookID}`, {
+				headers: {
+					Accept: 'application/json',
+					Authorization: $jwtToken,
+					userID: $userID
+				}
+			});
 
-		if (req.status !== 200) goto('/home');
+			const res = await req.json();
 
-		const res = await req.json();
-
-		return res['data'];
+			return res['data'];
+		} catch (err) {
+			goto('/home');
+			toast.error('Something went wrong during book retrieval, try again later', { position: 'bottom-center' });
+		}
 	};
 
 	const favouriteBook = async () => {
 		const bookID: string | null = $page.url.searchParams.get('id');
 
-		const req = await fetch(`http://localhost:8080/api/v1/books/favourite/${bookID}`, {
-			headers: {
-				Accept: 'application/json',
-				Authorization: $jwtToken,
-				userID: $userID
-			}
-		});
-		const res = await req.json();
+		try {
+			const req = await fetch(`http://localhost:8080/api/v1/books/favourite/${bookID}`, {
+				headers: {
+					Accept: 'application/json',
+					Authorization: $jwtToken,
+					userID: $userID
+				}
+			});
+			const res = await req.json();
 
-		if (req.status !== 200) goto('/home');
-
-		if (req.status === 200)
-			toast.success(res["message"], { position: "bottom-center" });
+			if (req.status === 200)
+				toast.success(res["message"], { position: "bottom-center" });
+		} catch (err) {
+			toast.error('Something went wrong during favouriting book, try again later', { position: 'bottom-center' });
+		}
 	};
 </script>
 

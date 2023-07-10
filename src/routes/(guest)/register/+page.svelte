@@ -53,23 +53,27 @@
 			genres
 		};
 
-		const req = await fetch('http://localhost:8080/api/v1/users/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json'
-			},
-			body: JSON.stringify(user)
-		});
-		const res = await req.json();
+		try {
+			const req = await fetch('http://localhost:8080/api/v1/users/register', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Accept: 'application/json'
+				},
+				body: JSON.stringify(user)
+			});
+			const res = await req.json();
 
-		if (req.status !== 200) {
-			toast.error(res['message'], { position: 'bottom-center' });
-			return;
+			if (req.status !== 200) {
+				toast.error(res['message'], { position: 'bottom-center' });
+				return;
+			}
+
+			toast.success(res['message'], { position: 'bottom-center' });
+			goto('/login', { replaceState: true });
+		} catch (err) {
+			toast.error('Something went wrong during register, try again later', { position: 'bottom-center' });
 		}
-
-		toast.success(res['message'], { position: 'bottom-center' });
-		goto('/login', { replaceState: true });
 	};
 </script>
 

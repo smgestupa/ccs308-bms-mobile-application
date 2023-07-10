@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+	export const prerender: boolean = false;
+</script>
+
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { currentTitle } from '$lib/stores/currentPage';
