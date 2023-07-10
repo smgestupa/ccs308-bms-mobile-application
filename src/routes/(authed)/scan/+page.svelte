@@ -5,6 +5,7 @@
 	import toast from 'svelte-french-toast';
 	import { currentTitle } from '$lib/stores/currentPage';
 	import { jwtToken, userID } from '$lib/stores/jwt';
+	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
 	$currentTitle = 'Scan';
 	let currImage: string = '',
 		buttonDisabled: boolean = false;
@@ -59,11 +60,11 @@
 
 <div class="flex-grow px-4 py-20">
 	<button
-		class="mx-auto mt-16 block h-screen max-h-[20rem] w-screen max-w-[20rem] rounded bg-white"
+		class="mx-auto mt-16 block h-screen max-h-[20rem] w-screen max-w-[20rem] rounded bg-white overflow-hidden"
 		on:click={uploadPhoto}
 		disabled={buttonDisabled}
 	>
-		<img src={currImage ? `data:image/png;base64, ${currImage}` : ''} alt="" />
+		<img src={currImage ? `data:image/png;base64, ${currImage}` : bms_icon_inverted} alt="" />
 	</button>
 	<p class="mt-8 w-full max-w-sm text-center text-lg text-gray-400">
 		If an ISBN10/13 is present within the image, it will be automatically detected after uploading
