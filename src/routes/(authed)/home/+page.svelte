@@ -79,7 +79,7 @@
 			</ul>
 		{:then data}
 			{#if data.length === 0}
-				<ul class="mt-2 flex gap-x-4 overflow-x-auto">
+				<ul class="mt-2 flex gap-x-4 overflow-x-hidden">
 					<li><SkeletonBookDisplay /></li>
 					<li><SkeletonBookDisplay /></li>
 					<li><SkeletonBookDisplay /></li>
