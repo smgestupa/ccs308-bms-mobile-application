@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import toast from 'svelte-french-toast';
 	import { currentTitle } from '$lib/stores/currentPage';
 	import { jwtToken, userID } from '$lib/stores/jwt';
+	import bookmark from "$lib/icons/bookmark.svg?raw";
 	$currentTitle = '';
 
 	const getBookInformation = async () => {
@@ -23,6 +25,24 @@
 		const res = await req.json();
 
 		return res['data'];
+	};
+
+	const favouriteBook = async () => {
+		const bookID: string | null = $page.url.searchParams.get('id');
+
+		const req = await fetch(`http://localhost:8080/api/v1/books/favourite/${bookID}`, {
+			headers: {
+				Accept: 'application/json',
+				Authorization: $jwtToken,
+				userID: $userID
+			}
+		});
+		const res = await req.json();
+
+		if (req.status !== 200) goto('/home');
+
+		if (req.status === 200)
+			toast.success(res["message"], { position: "bottom-center" });
 	};
 </script>
 
@@ -101,9 +121,14 @@
 				>
 				{data[0]['bookMetadata']['isbn13']}
 			</p>
-			<button class="btn-info btn mt-12 w-full rounded p-2 font-bold uppercase text-white"
-				>Read Book</button
-			>
+			<div class="flex w-full gap-x-2">
+				<button class="btn-info btn mt-12 flex-grow rounded p-2 font-bold uppercase text-white"
+					>Read Book</button
+				>
+				<button class="btn-success btn mt-12 w-14 rounded p-2 font-bold uppercase text-white"
+				on:click={favouriteBook}><div class="w-5 h-5">{@html bookmark}</div></button
+				>
+			</div>
 		</section>
 	{/await}
 </div>
