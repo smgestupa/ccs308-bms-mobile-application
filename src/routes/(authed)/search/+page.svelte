@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export const prerender: boolean = false;
-</script>
-
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { currentTitle } from '$lib/stores/currentPage';
@@ -10,7 +6,7 @@
 	import BookDisplay from '$lib/components/BookDisplay.svelte';
 	import { onMount } from 'svelte';
 	$currentTitle = 'Search';
-	let query: string = $page.url.searchParams.get('query') ?? '',
+	let query: string | null = '',
 		books: any = [];
 
 	const getBooks = async () => {
@@ -29,7 +25,12 @@
 		if (req.status === 200) books = res['data'];
 	};
 
-	onMount(getBooks);
+	onMount(() => {
+		if ($page.url.searchParams.get('query')) 
+			query = $page.url.searchParams.get('query');
+
+		getBooks();
+	});
 </script>
 
 <div class="h-full flex-grow px-4 py-20">
