@@ -3,7 +3,7 @@
 	import { Preferences, type GetResult } from '@capacitor/preferences';
 	import { jwtToken, userID } from '$lib/stores/jwt';
 	import { onMount } from 'svelte';
-	import bms_icon from "$lib/assets/bms-icon.png";
+	import bms_icon from '$lib/assets/bms-icon.png';
 
 	onMount(() => {
 		setTimeout(async () => {
@@ -19,9 +19,9 @@
 	});
 </script>
 
-<div class="flex justify-center items-center flex-grow">
-	<figure id="bms-icon" class="w-48 h-48">
-		<img src={bms_icon} alt="Book Management System">
+<div class="flex flex-grow items-center justify-center">
+	<figure id="bms-icon" class="h-48 w-48">
+		<img src={bms_icon} alt="Book Management System" />
 	</figure>
 </div>
 

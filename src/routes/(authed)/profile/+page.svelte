@@ -3,7 +3,7 @@
 	import { jwtToken, userID } from '$lib/stores/jwt';
 	import edit from '$lib/icons/edit.svg?raw';
 	$currentTitle = 'Profile';
-	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
+	import bms_icon_inverted from '$lib/assets/bms-icon-inverted.png';
 
 	const getUserProfile = async () => {
 		const req = await fetch('http://localhost:8080/api/v1/users/profile/get', {

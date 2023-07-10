@@ -8,8 +8,8 @@
 	import toast from 'svelte-french-toast';
 	import { currentTitle } from '$lib/stores/currentPage';
 	import { jwtToken, userID } from '$lib/stores/jwt';
-	import bookmark from "$lib/icons/bookmark.svg?raw";
-	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
+	import bookmark from '$lib/icons/bookmark.svg?raw';
+	import bms_icon_inverted from '$lib/assets/bms-icon-inverted.png';
 	$currentTitle = '';
 
 	const getBookInformation = async () => {
@@ -31,7 +31,9 @@
 			return res['data'];
 		} catch (err) {
 			goto('/home');
-			toast.error('Something went wrong during book retrieval, try again later', { position: 'bottom-center' });
+			toast.error('Something went wrong during book retrieval, try again later', {
+				position: 'bottom-center'
+			});
 		}
 	};
 
@@ -48,10 +50,11 @@
 			});
 			const res = await req.json();
 
-			if (req.status === 200)
-				toast.success(res["message"], { position: "bottom-center" });
+			if (req.status === 200) toast.success(res['message'], { position: 'bottom-center' });
 		} catch (err) {
-			toast.error('Something went wrong during favouriting book, try again later', { position: 'bottom-center' });
+			toast.error('Something went wrong during favouriting book, try again later', {
+				position: 'bottom-center'
+			});
 		}
 	};
 </script>
@@ -66,7 +69,7 @@
 			<figure class="absolute left-0 right-0 top-0 -translate-y-[60%]">
 				<img
 					class="mx-auto h-[316px] w-[198px] rounded-md bg-white bg-contain bg-center bg-no-repeat"
-					src="{ data[0]['cover'] ? `data:image/png;base64, ${data[0]['cover']}` : bms_icon_inverted }"
+					src={data[0]['cover'] ? `data:image/png;base64, ${data[0]['cover']}` : bms_icon_inverted}
 					alt=""
 				/>
 			</figure>
@@ -135,8 +138,9 @@
 				<button class="btn-info btn mt-12 flex-grow rounded p-2 font-bold uppercase text-white"
 					>Read Book</button
 				>
-				<button class="btn-success btn mt-12 w-14 rounded p-2 font-bold uppercase text-white"
-				on:click={favouriteBook}><div class="w-5 h-5">{@html bookmark}</div></button
+				<button
+					class="btn-success btn mt-12 w-14 rounded p-2 font-bold uppercase text-white"
+					on:click={favouriteBook}><div class="h-5 w-5">{@html bookmark}</div></button
 				>
 			</div>
 		</section>

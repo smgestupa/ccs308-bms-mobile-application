@@ -2,11 +2,11 @@
 	import { goto } from '$app/navigation';
 	import toast from 'svelte-french-toast';
 	import arrow_left_circle from '$lib/icons/arrow_left_circle.svg?raw';
-	import fantasy_img from "$lib/assets/genres/fantasy.jpg";
-	import horror_img from "$lib/assets/genres/horror.jpg";
-	import adventure_img from "$lib/assets/genres/adventure.jpg";
-	import romance_img from "$lib/assets/genres/romance.jpg";
-	import mystery_img from "$lib/assets/genres/mystery.jpg";
+	import fantasy_img from '$lib/assets/genres/fantasy.jpg';
+	import horror_img from '$lib/assets/genres/horror.jpg';
+	import adventure_img from '$lib/assets/genres/adventure.jpg';
+	import romance_img from '$lib/assets/genres/romance.jpg';
+	import mystery_img from '$lib/assets/genres/mystery.jpg';
 	let step: number = 0,
 		firstName: string = '',
 		lastName: string = '',
@@ -39,7 +39,9 @@
 		if (mystery) genres.push('mystery');
 
 		if (genres.length !== 3) {
-			toast.error('You must only choose three genres before proceeding', { position: 'bottom-center' });
+			toast.error('You must only choose three genres before proceeding', {
+				position: 'bottom-center'
+			});
 			return;
 		}
 
@@ -72,7 +74,9 @@
 			toast.success(res['message'], { position: 'bottom-center' });
 			goto('/login', { replaceState: true });
 		} catch (err) {
-			toast.error('Something went wrong during register, try again later', { position: 'bottom-center' });
+			toast.error('Something went wrong during register, try again later', {
+				position: 'bottom-center'
+			});
 		}
 	};
 </script>
@@ -84,7 +88,7 @@
 		<li class="step" class:step-primary={step >= 2}>Genre</li>
 	</ul>
 	{#if step === 0}
-		<a class="w-fit btn-ghost btn flex items-center gap-x-2 px-0 text-lg" href="/login">
+		<a class="btn-ghost btn flex w-fit items-center gap-x-2 px-0 text-lg" href="/login">
 			<div class="h-5 w-5">{@html arrow_left_circle}</div>
 			Go Back
 		</a>
@@ -174,7 +178,7 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300 object-fit h-[154px]"
+						class="object-fit h-[154px] w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
 						src={fantasy_img}
 						alt="Fantasy"
 					/>
@@ -190,7 +194,7 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300  h-[154px]"
+						class="h-[154px] w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
 						src={horror_img}
 						alt="Horror"
 					/>
@@ -206,7 +210,7 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300  h-[154px]"
+						class="h-[154px] w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
 						src={adventure_img}
 						alt="Adventure"
 					/>
@@ -222,7 +226,7 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300 h-[154px]"
+						class="h-[154px] w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
 						src={romance_img}
 						alt="Romance"
 					/>
@@ -238,7 +242,7 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300  h-[154px]"
+						class="h-[154px] w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
 						src={mystery_img}
 						alt="Mystery"
 					/>

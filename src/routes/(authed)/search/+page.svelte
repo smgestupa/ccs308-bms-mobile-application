@@ -26,8 +26,7 @@
 	};
 
 	onMount(() => {
-		if ($page.url.searchParams.get('query')) 
-			query = $page.url.searchParams.get('query');
+		if ($page.url.searchParams.get('query')) query = $page.url.searchParams.get('query');
 
 		getBooks();
 	});

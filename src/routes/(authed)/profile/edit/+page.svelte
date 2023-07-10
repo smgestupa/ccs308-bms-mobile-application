@@ -6,7 +6,7 @@
 	import { jwtToken, userID } from '$lib/stores/jwt';
 	import { profilePhoto } from '$lib/stores/profile';
 	import edit from '$lib/icons/edit.svg?raw';
-	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
+	import bms_icon_inverted from '$lib/assets/bms-icon-inverted.png';
 	$currentTitle = 'Profile';
 	let photo: string = '',
 		firstName: string = '',
@@ -71,7 +71,9 @@
 				goto('/profile', { replaceState: true });
 			}
 		} catch (err) {
-			toast.error('Something went wrong during editing, try again later', { position: 'bottom-center' });
+			toast.error('Something went wrong during editing, try again later', {
+				position: 'bottom-center'
+			});
 		}
 	};
 </script>

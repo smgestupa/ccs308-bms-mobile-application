@@ -1,5 +1,5 @@
 <script>
-	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
+	import bms_icon_inverted from '$lib/assets/bms-icon-inverted.png';
 </script>
 
 <div class="card card-compact h-fit w-fit rounded-none p-1 opacity-10">

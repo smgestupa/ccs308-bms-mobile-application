@@ -1,5 +1,5 @@
 <script lang="ts">
-	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
+	import bms_icon_inverted from '$lib/assets/bms-icon-inverted.png';
 	export let bookID: number, cover: string, title: string;
 </script>
 
@@ -7,7 +7,7 @@
 	<figure>
 		<img
 			class="mx-auto h-[211px] w-[132px] rounded-md bg-white bg-contain bg-center bg-no-repeat"
-			src="{cover ? `data:image/png;base64, ${cover}` : bms_icon_inverted}"
+			src={cover ? `data:image/png;base64, ${cover}` : bms_icon_inverted}
 			alt=""
 		/>
 	</figure>

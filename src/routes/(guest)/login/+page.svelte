@@ -20,7 +20,9 @@
 			const res = await req.json();
 
 			if (req.status !== 200) {
-				toast.error(res['message'] ?? "Username or password is invalid", { position: 'bottom-center' });
+				toast.error(res['message'] ?? 'Username or password is invalid', {
+					position: 'bottom-center'
+				});
 				return;
 			}
 
@@ -35,7 +37,9 @@
 
 			goto('/home', { replaceState: true });
 		} catch (err) {
-			toast.error('Something went wrong during login, try again later', { position: 'bottom-center' });
+			toast.error('Something went wrong during login, try again later', {
+				position: 'bottom-center'
+			});
 		}
 	};
 </script>

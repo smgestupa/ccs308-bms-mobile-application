@@ -12,7 +12,7 @@
 	import star from '$lib/icons/star.svg?raw';
 	import camera from '$lib/icons/camera.svg?raw';
 	import person from '$lib/icons/person.svg?raw';
-	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
+	import bms_icon_inverted from '$lib/assets/bms-icon-inverted.png';
 
 	const getUserProfile = async () => {
 		const req = await fetch('http://localhost:8080/api/v1/users/profile/get', {
@@ -28,11 +28,11 @@
 	};
 
 	const logoutUser = async () => {
-		await Preferences.set({ key: "jwtToken", value: "" });
-		await Preferences.set({ key: "userID", value: "" });
-		goto("/login", { replaceState: true });
-		toast.success("Successfully logged out", { position: "bottom-center" });
-	}
+		await Preferences.set({ key: 'jwtToken', value: '' });
+		await Preferences.set({ key: 'userID', value: '' });
+		goto('/login', { replaceState: true });
+		toast.success('Successfully logged out', { position: 'bottom-center' });
+	};
 
 	$: ({ route } = $page);
 </script>
@@ -53,9 +53,7 @@
 					<figure class="h-10 w-10 overflow-hidden rounded-full bg-white">
 						{#await getUserProfile() then _}
 							<img
-								src={$profilePhoto
-									? `data:image/png;base64, ${$profilePhoto}`
-									: bms_icon_inverted }
+								src={$profilePhoto ? `data:image/png;base64, ${$profilePhoto}` : bms_icon_inverted}
 								alt="Profile"
 							/>
 						{/await}
@@ -66,8 +64,7 @@
 				<li><a class="text-lg" href="/profile">Profile</a></li>
 				<li><div class="divider my-0" /></li>
 				<li>
-					<button class="text-lg font-bold text-error"
-					on:click={logoutUser}>
+					<button class="text-lg font-bold text-error" on:click={logoutUser}>
 						<div class="h-5 w-5">{@html logout}</div>
 						Logout
 					</button>

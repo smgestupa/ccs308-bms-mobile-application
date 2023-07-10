@@ -5,7 +5,7 @@
 	import toast from 'svelte-french-toast';
 	import { currentTitle } from '$lib/stores/currentPage';
 	import { jwtToken, userID } from '$lib/stores/jwt';
-	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
+	import bms_icon_inverted from '$lib/assets/bms-icon-inverted.png';
 	$currentTitle = 'Scan';
 	let currImage: string = '',
 		buttonDisabled: boolean = false;
@@ -55,7 +55,9 @@
 				toast.error(res['message'], { position: 'bottom-center' });
 			}
 		} catch (err) {
-			toast.error('Something went wrong during scanning, try again later', { position: 'bottom-center' });
+			toast.error('Something went wrong during scanning, try again later', {
+				position: 'bottom-center'
+			});
 			currImage = '';
 		}
 
@@ -65,7 +67,7 @@
 
 <div class="flex-grow px-4 py-20">
 	<button
-		class="mx-auto mt-16 block h-screen max-h-[20rem] w-screen max-w-[20rem] rounded bg-white overflow-hidden"
+		class="mx-auto mt-16 block h-screen max-h-[20rem] w-screen max-w-[20rem] overflow-hidden rounded bg-white"
 		on:click={uploadPhoto}
 		disabled={buttonDisabled}
 	>
