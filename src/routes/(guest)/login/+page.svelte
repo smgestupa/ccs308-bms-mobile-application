@@ -19,7 +19,7 @@
 		const res = await req.json();
 
 		if (req.status !== 200) {
-			toast.error(res['message'], { position: 'bottom-center' });
+			toast.error(res['message'] ?? "Username or password is invalid", { position: 'bottom-center' });
 			return;
 		}
 
