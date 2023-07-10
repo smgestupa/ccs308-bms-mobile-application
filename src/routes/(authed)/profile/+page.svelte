@@ -23,7 +23,7 @@
 	{#await getUserProfile() then data}
 		<section class="relative h-36 bg-secondary">
 			<button class="avatar absolute bottom-0 translate-y-14 px-4">
-				<figure class="h-28 w-28 overflow-hidden rounded-full bg-black">
+				<figure class="h-28 w-28 overflow-hidden rounded-full bg-white">
 					<img
 						src={data['photo'] ? `data:image/png;base64, ${data['photo']}` : bms_icon_inverted}
 						alt="Profile"
