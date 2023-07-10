@@ -6,6 +6,7 @@
 	import { jwtToken, userID } from '$lib/stores/jwt';
 	import { profilePhoto } from '$lib/stores/profile';
 	import edit from '$lib/icons/edit.svg?raw';
+	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
 	$currentTitle = 'Profile';
 	let photo: string = '',
 		firstName: string = '',
@@ -77,7 +78,7 @@
 			<button class="avatar absolute bottom-0 translate-y-14 px-4" on:click={uploadPhoto}>
 				<figure class="h-28 w-28 overflow-hidden rounded-full bg-black">
 					<img
-						src={photo !== '' ? `data:image/png;base64, ${photo}` : '/favicon.png'}
+						src={photo !== '' ? `data:image/png;base64, ${photo}` : bms_icon_inverted}
 						alt="Profile"
 					/>
 				</figure>

@@ -12,6 +12,7 @@
 	import star from '$lib/icons/star.svg?raw';
 	import camera from '$lib/icons/camera.svg?raw';
 	import person from '$lib/icons/person.svg?raw';
+	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
 
 	const getUserProfile = async () => {
 		const req = await fetch('http://localhost:8080/api/v1/users/profile/get', {
@@ -54,7 +55,7 @@
 							<img
 								src={$profilePhoto !== ''
 									? `data:image/png;base64, ${$profilePhoto}`
-									: '/favicon.png'}
+									: bms_icon_inverted }
 								alt="Profile"
 							/>
 						{/await}

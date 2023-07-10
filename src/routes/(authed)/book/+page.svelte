@@ -5,6 +5,7 @@
 	import { currentTitle } from '$lib/stores/currentPage';
 	import { jwtToken, userID } from '$lib/stores/jwt';
 	import bookmark from "$lib/icons/bookmark.svg?raw";
+	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
 	$currentTitle = '';
 
 	const getBookInformation = async () => {
@@ -56,7 +57,7 @@
 			<figure class="absolute left-0 right-0 top-0 -translate-y-[60%]">
 				<img
 					class="mx-auto h-[316px] w-[198px] rounded-md bg-white bg-contain bg-center bg-no-repeat"
-					src="data:image/png;base64, {data[0]['cover']}"
+					src="{ data[0]['cover'] ? `data:image/png;base64, ${data[0]['cover']}` : bms_icon_inverted }"
 					alt=""
 				/>
 			</figure>

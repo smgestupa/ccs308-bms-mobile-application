@@ -1,7 +1,12 @@
+<script>
+	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
+</script>
+
 <div class="card card-compact h-fit w-fit rounded-none p-1 opacity-10">
 	<figure>
 		<div
-			class="mx-auto h-[211px] w-[132px] rounded-md bg-white bg-[url(/favicon.png)] bg-contain bg-center bg-no-repeat"
+			class="mx-auto h-[211px] w-[132px] rounded-md bg-white bg-contain bg-center bg-no-repeat"
+			style:background-image="url({bms_icon_inverted})"
 		/>
 	</figure>
 	<p

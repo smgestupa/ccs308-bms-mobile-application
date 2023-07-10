@@ -3,6 +3,7 @@
 	import { jwtToken, userID } from '$lib/stores/jwt';
 	import edit from '$lib/icons/edit.svg?raw';
 	$currentTitle = 'Profile';
+	import bms_icon_inverted from "$lib/assets/bms-icon-inverted.png";
 
 	const getUserProfile = async () => {
 		const req = await fetch('http://localhost:8080/api/v1/users/profile/get', {
@@ -24,7 +25,7 @@
 			<button class="avatar absolute bottom-0 translate-y-14 px-4">
 				<figure class="h-28 w-28 overflow-hidden rounded-full bg-black">
 					<img
-						src={data['photo'] ? `data:image/png;base64, ${data['photo']}` : '/favicon.png'}
+						src={data['photo'] ? `data:image/png;base64, ${data['photo']}` : bms_icon_inverted}
 						alt="Profile"
 					/>
 				</figure>
