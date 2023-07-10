@@ -2,6 +2,11 @@
 	import { goto } from '$app/navigation';
 	import toast from 'svelte-french-toast';
 	import arrow_left_circle from '$lib/icons/arrow_left_circle.svg?raw';
+	import fantasy_img from "$lib/assets/genres/fantasy.jpg";
+	import horror_img from "$lib/assets/genres/horror.jpg";
+	import adventure_img from "$lib/assets/genres/adventure.jpg";
+	import romance_img from "$lib/assets/genres/romance.jpg";
+	import mystery_img from "$lib/assets/genres/mystery.jpg";
 	let step: number = 0,
 		firstName: string = '',
 		lastName: string = '',
@@ -34,7 +39,7 @@
 		if (mystery) genres.push('mystery');
 
 		if (genres.length !== 3) {
-			toast.error('You must choose three genres before proceeding', { position: 'bottom-center' });
+			toast.error('You must only choose three genres before proceeding', { position: 'bottom-center' });
 			return;
 		}
 
@@ -165,9 +170,9 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
-						src="/favicon.png"
-						alt=""
+						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300 object-fit h-[154px]"
+						src={fantasy_img}
+						alt="Fantasy"
 					/>
 				</figure>
 				<div class="card-body">
@@ -181,9 +186,9 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
-						src="/favicon.png"
-						alt=""
+						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300  h-[154px]"
+						src={horror_img}
+						alt="Horror"
 					/>
 				</figure>
 				<div class="card-body">
@@ -197,9 +202,9 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
-						src="/favicon.png"
-						alt=""
+						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300  h-[154px]"
+						src={adventure_img}
+						alt="Adventure"
 					/>
 				</figure>
 				<div class="card-body">
@@ -213,9 +218,9 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
-						src="/favicon.png"
-						alt=""
+						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300 h-[154px]"
+						src={romance_img}
+						alt="Romance"
 					/>
 				</figure>
 				<div class="card-body">
@@ -229,9 +234,9 @@
 			>
 				<figure class="px-4 pt-4">
 					<img
-						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300"
-						src="/favicon.png"
-						alt=""
+						class="w-full rounded-lg border border-base-content border-opacity-5 bg-base-300  h-[154px]"
+						src={mystery_img}
+						alt="Mystery"
 					/>
 				</figure>
 				<div class="card-body">
