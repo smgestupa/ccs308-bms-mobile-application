@@ -50,10 +50,10 @@
 		<div class="dropdown-end dropdown">
 			<label tabindex="0" class="m-1">
 				<div class="avatar">
-					<figure class="h-10 w-10 overflow-hidden rounded-full bg-black">
+					<figure class="h-10 w-10 overflow-hidden rounded-full bg-white">
 						{#await getUserProfile() then _}
 							<img
-								src={$profilePhoto !== ''
+								src={$profilePhoto
 									? `data:image/png;base64, ${$profilePhoto}`
 									: bms_icon_inverted }
 								alt="Profile"
