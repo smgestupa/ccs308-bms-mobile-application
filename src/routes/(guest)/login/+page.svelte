@@ -9,7 +9,7 @@
 		const formEntries: any = Object.fromEntries(formData);
 
 		try {
-			const req = await fetch('http://localhost:8080/api/v1/users/login', {
+			const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

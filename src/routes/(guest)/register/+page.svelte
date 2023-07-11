@@ -56,7 +56,7 @@
 		};
 
 		try {
-			const req = await fetch('http://localhost:8080/api/v1/users/register', {
+			const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/register`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -188,7 +188,7 @@
 				</div>
 			</button>
 			<button
-				class="card-compact card transition-all duration-200 hover:-translate-y-1 hover:bg-red-500"
+				class="card-compact card transition-all duration-200 hover:-translate-y-1"
 				on:click={(_) => (horror = !horror)}
 				class:active={horror}
 			>
@@ -204,7 +204,7 @@
 				</div>
 			</button>
 			<button
-				class="card-compact card transition-all duration-200 hover:-translate-y-1 hover:bg-red-500"
+				class="card-compact card transition-all duration-200 hover:-translate-y-1"
 				on:click={(_) => (adventure = !adventure)}
 				class:active={adventure}
 			>
@@ -220,7 +220,7 @@
 				</div>
 			</button>
 			<button
-				class="card-compact card transition-all duration-200 hover:-translate-y-1 hover:bg-red-500"
+				class="card-compact card transition-all duration-200 hover:-translate-y-1"
 				on:click={(_) => (romance = !romance)}
 				class:active={romance}
 			>
@@ -236,7 +236,7 @@
 				</div>
 			</button>
 			<button
-				class="card-compact card transition-all duration-200 hover:-translate-y-1 hover:bg-red-500"
+				class="card-compact card transition-all duration-200 hover:-translate-y-1"
 				on:click={(_) => (mystery = !mystery)}
 				class:active={mystery}
 			>

@@ -25,10 +25,8 @@
 			resultType: CameraResultType.Base64
 		});
 
-		if (image.base64String) {
-			currImage = image.base64String;
-			scanPhoto();
-		}
+		currImage = image.base64String ?? "";
+		if (currImage) scanPhoto();
 	};
 
 	const scanPhoto = async () => {
@@ -38,7 +36,7 @@
 		buttonDisabled = true;
 
 		try {
-			const req = await fetch('http://localhost:8080/api/v1/books/extract', {
+			const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/extract`, {
 				method: 'POST',
 				headers: {
 					Accept: 'application/json',

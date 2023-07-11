@@ -18,7 +18,7 @@
 		const bookID: string | null = $page.url.searchParams.get('id');
 
 		try {
-			const req = await fetch(`http://localhost:8080/api/v1/books/get/${bookID}`, {
+			const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/get/${bookID}`, {
 				headers: {
 					Accept: 'application/json',
 					Authorization: $jwtToken,
@@ -41,7 +41,7 @@
 		const bookID: string | null = $page.url.searchParams.get('id');
 
 		try {
-			const req = await fetch(`http://localhost:8080/api/v1/books/favourite/${bookID}`, {
+			const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/favourite/${bookID}`, {
 				headers: {
 					Accept: 'application/json',
 					Authorization: $jwtToken,

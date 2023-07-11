@@ -6,7 +6,7 @@
 	$currentTitle = 'Home';
 
 	const getUserProfile = async () => {
-		const req = await fetch('http://localhost:8080/api/v1/users/profile/get', {
+		const req = await fetch('${import.meta.env.VITE_BACKEND_URL}/api/v1/users/profile/get', {
 			headers: {
 				Accept: 'application/json',
 				Authorization: $jwtToken,
@@ -19,7 +19,7 @@
 	};
 
 	const getFavouriteBooks = async () => {
-		const req = await fetch('http://localhost:8080/api/v1/books/favourite/list', {
+		const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/favourite/list`, {
 			headers: {
 				Accept: 'application/json',
 				Authorization: $jwtToken,
@@ -32,7 +32,7 @@
 	};
 
 	const getTrendingBooks = async () => {
-		const req = await fetch('http://localhost:8080/api/v1/books/trending/list', {
+		const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/trending/list`, {
 			headers: {
 				Accept: 'application/json',
 				Authorization: $jwtToken
@@ -44,7 +44,7 @@
 	};
 
 	const getRecommendedBooks = async () => {
-		const req = await fetch('http://localhost:8080/api/v1/books/recommend', {
+		const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/recommend`, {
 			headers: {
 				Accept: 'application/json',
 				Authorization: $jwtToken,

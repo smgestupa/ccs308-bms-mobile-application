@@ -24,7 +24,7 @@
 	};
 
 	const getUserProfile = async () => {
-		const req = await fetch('http://localhost:8080/api/v1/users/profile/get', {
+		const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/users/profile/get`, {
 			headers: {
 				Accept: 'application/json',
 				Authorization: $jwtToken,
@@ -53,7 +53,7 @@
 		};
 
 		try {
-			const req = await fetch('http://localhost:8080/api/v1/users/profile/edit', {
+			const req = await fetch('${import.meta.env.VITE_BACKEND_URL}/api/v1/users/profile/edit', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -82,7 +82,7 @@
 	{#await getUserProfile() then data}
 		<section class="relative h-36 bg-secondary">
 			<button class="avatar absolute bottom-0 translate-y-14 px-4" on:click={uploadPhoto}>
-				<figure class="h-28 w-28 overflow-hidden rounded-full bg-black">
+				<figure class="h-28 w-28 overflow-hidden rounded-full bg-white">
 					<img
 						src={photo !== '' ? `data:image/png;base64, ${photo}` : bms_icon_inverted}
 						alt="Profile"
