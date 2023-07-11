@@ -41,13 +41,16 @@
 		const bookID: string | null = $page.url.searchParams.get('id');
 
 		try {
-			const req = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/favourite/${bookID}`, {
-				headers: {
-					Accept: 'application/json',
-					Authorization: $jwtToken,
-					userID: $userID
+			const req = await fetch(
+				`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/favourite/${bookID}`,
+				{
+					headers: {
+						Accept: 'application/json',
+						Authorization: $jwtToken,
+						userID: $userID
+					}
 				}
-			});
+			);
 			const res = await req.json();
 
 			if (req.status === 200) toast.success(res['message'], { position: 'bottom-center' });

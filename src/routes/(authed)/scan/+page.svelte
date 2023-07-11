@@ -25,7 +25,7 @@
 			resultType: CameraResultType.Base64
 		});
 
-		currImage = image.base64String ?? "";
+		currImage = image.base64String ?? '';
 		if (currImage) scanPhoto();
 	};
 

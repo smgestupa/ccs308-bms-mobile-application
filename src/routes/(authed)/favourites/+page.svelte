@@ -10,7 +10,9 @@
 
 	const getFavouriteBooks = async () => {
 		const req = await fetch(
-			`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/favourite/search${query ? `?query=${query}` : ''}`,
+			`${import.meta.env.VITE_BACKEND_URL}/api/v1/books/favourite/search${
+				query ? `?query=${query}` : ''
+			}`,
 			{
 				headers: {
 					Accept: 'application/json',
