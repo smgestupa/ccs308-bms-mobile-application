@@ -1,0 +1,11 @@
+{
+	"appId": "com.bms.application",
+	"appName": "Book Management System",
+	"webDir": "build",
+	"bundledWebRuntime": false,
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	}
+}

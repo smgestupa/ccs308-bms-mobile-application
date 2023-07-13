@@ -1,10 +1,11 @@
 {
 	"name": "ccs308-bms-mobile-application",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"android:build": "vite build && npx cap sync android && npx cap copy",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -12,9 +13,11 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@capacitor/assets": "^2.0.4",
 		"@sveltejs/adapter-static": "^2.0.2",
 		"@sveltejs/kit": "^1.5.0",
 		"autoprefixer": "^10.4.14",
+		"daisyui": "^3.1.6",
 		"postcss": "^8.4.23",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
@@ -31,8 +34,11 @@
 	"type": "module",
 	"dependencies": {
 		"@capacitor/android": "^4.8.0",
+		"@capacitor/camera": "^4.1.5",
 		"@capacitor/cli": "^4.8.0",
 		"@capacitor/core": "^4.8.0",
-		"@capacitor/geolocation": "^4.1.0"
+		"@capacitor/preferences": "^4.0.2",
+		"base64-arraybuffer": "^1.0.2",
+		"svelte-french-toast": "^1.1.0"
 	}
 }
